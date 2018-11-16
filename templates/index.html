@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>EGM</title>
+	 <!--- <meta name="description" content="">  
+	<meta name="author" content="">-->
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+
+ 	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}">  
+
+   <!-- script
+   ================================================== -->   
+	<script type="text/javascript" src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+
+    <!--<meta http-equiv="refresh" content="120"> -->
+
+</head>
+
+<body id="top">
+   
+
+	<!-- header 
+   ================================================== -->
+   <header>   	
+	
+   	<div class="row">
+
+   		<div class="top-bar">
+   			<a class="menu-toggle" href="#"><span>Menu</span></a>
+
+	   		<div class="logo">
+		         <a href="index.html">EGM</a>
+		      </div>		      
+
+		   	<nav id="main-nav-wrap">
+					<ul class="main-navigation">
+						<li class="current"><a class="smoothscroll"  href="#intro" title="">Home</a></li>
+						<li><a class="smoothscroll"  href="#medidas" title="">Medidas</a></li>	
+                  <li><a class="smoothscroll"  href="#contact" title="">Formularios</a></li>  
+					</ul>
+				</nav>    
+				
+   		</div> <!-- /top-bar --> 
+   	
+   	</div> <!-- /row --> 		
+   </header> <!-- /header -->
+
+	<!-- intro section
+   ================================================== -->
+   <section id="intro">   
+
+   	<div class="intro-overlay"></div>	
+	
+   	<div class="intro-content">
+   		<div class="row">
+
+   			<div class="col-twelve">
+
+	   			<h5>Universidad de Alcalá</h5>
+	   			<h1>Computación en Red</h1>
+
+	   			<p class="intro-position">
+	   				<span>Aplicación Web</span>
+	   				<span>GP1</span> 
+	   			</p>
+
+	   			<a class="button stroke smoothscroll" href="#medidas" title="">Medidas</a>
+
+	   		</div>  
+   			
+   		</div>   		 		
+   	</div> <!-- /intro-content --> 
+
+   </section> <!-- /intro -->
+
+
+   <!-- about section
+   ================================================== -->
+   <section id="medidas">  
+   	<div class="row section-intro">
+   		<div class="col-twelve">
+
+   			<h5>Medidas</h5>
+   			<h1>Visualización de las medidas para la web: meneame.net</h1>
+
+   			<div class="intro-info">
+				<p class="lead"> Fecha y Hora de la consulta: <b> {{ date }} </b></p>
+   				<p class="lead"> Numero de clics: <b> {{ clics }} </b></p>
+				<p class="lead">Numero de Meneos: <b> {{ meneos }} </b></p>
+				<p class="lead">Titutlo de la Noticia: <b> {{ title }}: </b></p> 
+   			</div>
+   			
+   		</div>   		
+   	</div> 
+   </section> 
+
+   <section id="contact">
+
+      <div class="row section-intro">
+         <div class="col-twelve">
+
+            <h5>Formularios</h5>
+            <h1>¡Consulta la información que quieras!</h1>
+
+            <p class="lead">En esta sección puedes consultar un valor histórico</p>
+
+         </div> 
+      </div>
+
+      <div class="row section-intro">
+
+         <div class="col-twelve">
+            <form name="umbralForm" id="umbralForm" method="post" action="">
+               <fieldset>
+
+                  <div class="form-field">
+                     <input name="umbral" type="number" id="umbral" placeholder="Umbral" value="" minlength="2" required="">
+                  </div>
+
+                  <div class="form-field">
+                      
+                     <table>
+                        {% if dataTable %}
+                        <tr>
+                           {% for key in dataTable[0] %}
+                              <th> {{ key }} </th>
+                           {% endfor %}
+                        </tr>
+                        {% endif %}
+
+                        {% for dict_item in dataTable %}
+                        <tr>
+                           {% for value in dict_item.values() %}
+                              <td> {{ value }} </td>
+                           {% endfor %}
+                        </tr>
+                        {% endfor %}
+                     </table>
+                     
+                     
+                  </div>
+                                  
+                 <div class="form-field">
+                  <button class="submitform" type="submit">Consultar</button>
+               </div>
+
+               </fieldset>
+            </form>
+         </div>
+      </div>
+
+      <div class="row section-intro">
+         <div class="col-twelve">
+
+            <h5>Valor medio</h5>
+            <h1>Valor medio de clics</h1>
+
+            <p class="lead">En esta sección puedes consultar el valor medio de clics medido en nuestras bases de datos</p>
+            <div class="col-twelve">
+            {% if valorClics %}
+               {% if bbdd_flag %}
+                  <p> El valor medio de clics medido es de: <b> {{ valorClics }}</b> (Base de datos local)</p>
+               {% else %}
+                  <p> El valor medio de clics medido es de: <b> {{ valorClics }} </b>(Base de datos en la Nube)</p>
+               {% endif %}
+            {% endif %}
+            
+               <div class="form-field">
+                  <a href="/valor_medio"><button class="submitform" type="button">Consultar</button></a>
+               </div> 
+            </div>
+
+         </div> 
+      </div>
+
+      <div class="row section-intro">
+         <div class="col-twelve">
+
+            <h5>Visualización Dashboards</h5>
+            <h1>Graficas generadas con Beebotte</h1>
+
+            <p class="lead">En esta sección puedes consultar las graficas proporcionadas por la herramienta Beebotte.</p>
+            <div class="col-twelve">
+            
+               <div class="form-field">
+                  <a href="/graficas"><button class="submitform" type="button">Consultar</button></a>
+               </div> 
+            </div>
+
+         </div> 
+      </div>
+
+   </section>>
+
+   <!-- Java Script
+   ================================================== --> 
+   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+   <script type="text/javascript" src="{{ url_for('static', filename='js/plugins.js') }}"></script> 
+   <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
