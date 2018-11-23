@@ -5,8 +5,9 @@ import sys
 
 app = Flask(__name__)
 
-client = MongoClient()
-db = client.example # Ejemplo de base de datos local
+db_client = MongoClient()
+#db = client.example # Ejemplo de base de datos local
+db = db_client.localbbdd  # Ejemplo de base de datos local
 collection = db.store # Coleccion donde se almacenan los datos recogidos
 
 _accesskey = "p0SNk57KZfEuxGl3arBNTPca"
