@@ -37,4 +37,11 @@ python run.py
 ```
 * Entrar al navegador con la IP de la maquina y el puerto 5000.
 
+###Requisitos
+
+Para el correcto funcionamiento de la aplicación, será necesario la instalación de: 
+
+* python
+* Flask
+* mongo
 
