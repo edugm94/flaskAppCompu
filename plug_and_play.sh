@@ -14,5 +14,4 @@ echo '							                                                                   
 
 
 
-echo "Empieza instalación de la aplicación  MeneameApp..."
 
