@@ -14,4 +14,8 @@ echo '							                                                                   
 
 
 
+set -e 
 
+cd aksdj 2> log.txt
+
+echo Holaa
