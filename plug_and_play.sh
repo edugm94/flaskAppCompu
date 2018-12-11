@@ -1,21 +1,12 @@
 #!/bin/bash
 
 
+#Este script crea un demonio para que se ejecute cada vez que se inicie la maquina
 
-echo '														       	 '
-echo  '   _____ ______   _______   ________   _______   ________  _____ ______   _______           ________  ________  ________'   
-echo '   |\   _ \  _   \|\  ___ \ |\   ___  \|\  ___ \ |\   __  \|\   _ \  _   \|\  ___ \         |\   __  \|\   __  \|\   __  \'  
-echo '    \ \  \\\__\ \  \ \   __/|\ \  \\ \  \ \   __/|\ \  \|\  \ \  \\\__\ \  \ \   __/|        \ \  \|\  \ \  \|\  \ \  \|\  \' 
-echo '     \ \  \\|__| \  \ \  \_|/_\ \  \\ \  \ \  \_|/_\ \   __  \ \  \\|__| \  \ \  \_|/__       \ \   __  \ \   ____\ \   ____\'
-echo '      \ \  \    \ \  \ \  \_|\ \ \  \\ \  \ \  \_|\ \ \  \ \  \ \  \    \ \  \ \  \_|\ \       \ \  \ \  \ \  \___|\ \  \___|'
-echo '       \ \__\    \ \__\ \_______\ \__\\ \__\ \_______\ \__\ \__\ \__\    \ \__\ \_______\       \ \__\ \__\ \__\    \ \__\'   
-echo '        \|__|     \|__|\|_______|\|__| \|__|\|_______|\|__|\|__|\|__|     \|__|\|_______|        \|__|\|__|\|__|     \|__|'  
-echo '							                                                                     '	
+
+sudo servide mongod start #Inicia el servicio de mongDB
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT  #abre el puerto 80
+python ~/flaskAppCompu/run.py  #ejecuta el script de la aplicacion
 
 
 
-set -e 
-
-cd aksdj 2> log.txt
-
-echo Holaa

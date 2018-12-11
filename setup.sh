@@ -89,22 +89,43 @@ then
 	echo "--> Base de datos importada correctamente!"
 else	
 	echo " `date`: Error al importar base de datos" >> log.txt
+	exit 1 
 fi
 
 
+####################################################################################################################################
+
+######################################## Crear demonio que se ejecuta al arrancar la maquina #######################################
 
 
 
+echo "--> Preparando demonio..."
 
-
-
-
-
-
-
-
-
-
+cp ~/flaskAppCompu/plug_and_play.sh /etc/inid.t
+sudo chown root:root /etc/init.d/plug_and_play.sh
+if [ $? -eq 0 ]
+then
+	echo "--> Owner: Correcto!"
+else
+	echo " `date`: Error al hacer propietario al crear demonio" >> log.txt
+	exit 1
+fi	
+sudo chmod 755 /etc/init.d/plug_and_play.sh
+if [ $? -eq 0 ]
+then
+	echo "--> Permisos: Correcto!"
+else
+	echo " `date`: Error al dar permisos al crear demonio" >> log.txt
+	exit 1 
+fi
+sudo update-rc.d /etc/init.d/plug_and_play.sh defaults
+if [ $? -eq 0 ]
+then
+	echo "--> Demonio creado correctamente!"
+else 
+	echo " `date`: Error al crear demonio" >> log.txt
+	exit 1
+fi
 
 
 
