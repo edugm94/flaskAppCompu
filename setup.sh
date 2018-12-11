@@ -29,7 +29,7 @@ if [ -d ~/flaskAppCompu ]
 then 
 	cd flaskAppCompu
 else 
-	echo " `date`: Error al clonar el repositorio"
+	echo " `date`: Error al clonar el repositorio" >> log.txt
 	exit 1 #Se finaliza el script
 fi 
 
@@ -39,7 +39,72 @@ fi
 ###############  Configuracion de los diferentes servicio para funcionamiento de la App ######################
 
 #Instalar Python
+echo "--> Preparando instalacion de paquetes..."
+
+sudo apt update
+sudo apt -y install python
+sudo apt -y install python-pip
+
 #Instalar paquetes de python necesarion
+
+if [ $? -eq 0 ]
+then
+	echo "--> Correcta intalacion de Python y Pip..."
+	echo "--> Instalando paquetes de Python necesarios..."
+	pip install -r requirements.txt
+fi
+
+
+
 #Instalar mongodb
+
+if [ $? -eq 0 ]
+then
+	echo "--> Preparando instalacion de mongoDB..."
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+	sudo service mongod start
+	if [ $? -eq 0 ]
+	then
+		echo "--> Se ha instalado correctamente mongoDB. Estado: running."
+	fi
+else
+	echo " `date`: Error al instalar mongoDB" >> log.txt
+	exit 1
+fi
+
+
+
+
 #Importar base de datos
+
+
+echo "--> Importando base de datos local en mongoDB..."
+mongoimport --db localbbdd --collection store --file meneame_localbbdd.json
+
+if [ $? -eq 0 ]
+then
+	echo "--> Base de datos importada correctamente!"
+else	
+	echo " `date`: Error al importar base de datos" >> log.txt
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
