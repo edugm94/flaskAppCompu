@@ -99,33 +99,33 @@ fi
 
 
 
-echo "--> Preparando demonio..."
+#echo "--> Preparando demonio..."
 
-cp ~/flaskAppCompu/plug_and_play.sh /etc/init.d/
-sudo chown root:root /etc/init.d/plug_and_play.sh
-if [ $? -eq 0 ]
-then
-	echo "--> Owner: Correcto!"
-else
-	echo " `date`: Error al hacer propietario al crear demonio" >> log.txt
-	exit 1
-fi	
-sudo chmod 755 /etc/init.d/plug_and_play.sh
-if [ $? -eq 0 ]
-then
-	echo "--> Permisos: Correcto!"
-else
-	echo " `date`: Error al dar permisos al crear demonio" >> log.txt
-	exit 1 
-fi
-sudo update-rc.d plug_and_play.sh defaults
-if [ $? -eq 0 ]
-then
-	echo "--> Demonio creado correctamente!"
-else 
-	echo " `date`: Error al crear demonio" >> log.txt
-	exit 1
-fi
+#cp ~/flaskAppCompu/plug_and_play.sh /etc/init.d/
+#sudo chown root:root /etc/init.d/plug_and_play.sh
+#if [ $? -eq 0 ]
+#then
+#	echo "--> Owner: Correcto!"
+#else
+#	echo " `date`: Error al hacer propietario al crear demonio" >> log.txt
+#	exit 1
+#fi	
+#sudo chmod 755 /etc/init.d/plug_and_play.sh
+#if [ $? -eq 0 ]
+#then
+#	echo "--> Permisos: Correcto!"
+#else
+#	echo " `date`: Error al dar permisos al crear demonio" >> log.txt
+#	exit 1 
+#fi
+#sudo update-rc.d plug_and_play.sh defaults
+#if [ $? -eq 0 ]
+#then
+#	echo "--> Demonio creado correctamente!"
+#else 
+#	echo " `date`: Error al crear demonio" >> log.txt
+#	exit 1
+#fi
 
 
 
@@ -134,13 +134,13 @@ fi
 ######################################## Ejecutar la aplicacion ####################################################################
 
 
-sudo python ~/flaskAppCompu/run.py 
+#sudo python ~/flaskAppCompu/run.py 
 
-if [ $? -eq 0 ]
-then
-	echo "--> Aplicacion corriendo correctamente!"
-else
-	echo " `date`: Error al ejecutar la aplicacion" >> log.txt
-	exit 1
-fi
+#if [ $? -eq 0 ]
+#then
+#	echo "--> Aplicacion corriendo correctamente!"
+#else
+#	echo " `date`: Error al ejecutar la aplicacion" >> log.txt
+#	exit 1
+#fi
 	
