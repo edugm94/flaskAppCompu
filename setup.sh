@@ -103,7 +103,7 @@ echo "--> Preparando demonio..."
 
 sudo chmod 755 ~/flaskAppCompu/plug_and_play.sh
 sudo apt-get install -y cron 
-(crontab -l; echo "@reboot ~/flaskAppCompu/plug_and_play.sh") | crontab - 
+echo "@reboot ~/flaskAppCompu/plug_and_play.sh" | crontab - 
 
 if [ $? -eq 0 ] 
 then 
