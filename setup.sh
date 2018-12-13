@@ -101,7 +101,7 @@ fi
 
 echo "--> Preparando demonio..."
 
-cp ~/flaskAppCompu/plug_and_play.sh /etc/inid.t
+cp ~/flaskAppCompu/plug_and_play.sh /etc/init.d/
 sudo chown root:root /etc/init.d/plug_and_play.sh
 if [ $? -eq 0 ]
 then
