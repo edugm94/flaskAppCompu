@@ -118,7 +118,7 @@ else
 	echo " `date`: Error al dar permisos al crear demonio" >> log.txt
 	exit 1 
 fi
-sudo update-rc.d /etc/init.d/plug_and_play.sh defaults
+sudo update-rc.d plug_and_play.sh defaults
 if [ $? -eq 0 ]
 then
 	echo "--> Demonio creado correctamente!"
@@ -129,3 +129,18 @@ fi
 
 
 
+####################################################################################################################################
+
+######################################## Ejecutar la aplicacion ####################################################################
+
+
+sudo python ~/flaskAppCompu/run.py 
+
+if [ $? -eq 0 ]
+then
+	echo "--> Aplicacion corriendo correctamente!"
+else
+	echo " `date`: Error al ejecutar la aplicacion" >> log.txt
+	exit 1
+fi
+	
